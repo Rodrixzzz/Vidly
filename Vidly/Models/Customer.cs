@@ -15,23 +15,12 @@ namespace Vidly.Models
             get { return _id; }
             set { _id = value; }
         }
-        [Required]
+
+        [Required(ErrorMessage = "Please enter customer's name.")]
         [StringLength(255)]
-        private string _name;
+        public string Name { get; set; }
 
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-
-        private bool _isSuscribedToNewsletter;
-
-        public bool IsSuscribedToNewsletter
-        {
-            get { return _isSuscribedToNewsletter; }
-            set { _isSuscribedToNewsletter = value; }
-        }
+        public bool IsSuscribedToNewsletter { get; set; }
 
         public MembershipType MembershipType { get; set; }
         
@@ -39,8 +28,9 @@ namespace Vidly.Models
         public byte MembershipTypeId { get; set; }
         
         [Display(Name = "Date of Birth")]
-       
+        [Min18YearsIfAMember]
         public DateTime? BirthDate { get; set; }
         
+
     }
 }
